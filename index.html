@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cake Animation</title>
+  <style>
+    /* Reset */
+    *,
+    *::before,
+    *::after {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #eac285;
+    }
+
+    .container {
+      width: 400px;
+      height: 500px;
+      background-color: #ffffff;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+      border-radius: 8px;
+      box-shadow: 0 20px 45px rgba(120, 76, 10, 0.25);
+      text-align: center;
+      overflow: hidden;
+      transition: opacity 1s ease; /* Fade-out transition */
+    }
+
+    .fade-out {
+      opacity: 0; /* Hides container */
+    }
+
+    /* Cake styling */
+    .cake {
+      width: 100%;
+      position: absolute;
+      bottom: 80px;
+    }
+    .bottom-layer,
+    .middle-layer,
+    .top-layer {
+      height: 80px;
+      width: 240px;
+      position: relative;
+      margin: auto;
+      background-repeat: repeat;
+      background-size: 100% 100%, 60px 100px;
+      background-position: 28px 0;
+      background-image: linear-gradient(
+          transparent 50px,
+          #e3a953 50px,
+          #e3a953 60px,
+          transparent 60px
+        ),
+        radial-gradient(circle at 30px 5px, #713e16 30px, #eac284 31px);
+    }
+    .middle-layer {
+      transform: scale(0.85);
+      top: 72px;
+      animation: rise-1 2s forwards;
+    }
+    @keyframes rise-1 {
+      100% {
+        top: 7px;
+      }
+    }
+    .top-layer {
+      transform: scale(0.7);
+      top: 144px;
+      animation: rise-2 2s 2s forwards;
+    }
+    @keyframes rise-2 {
+      100% {
+        top: 26px;
+      }
+    }
+    .candle {
+      background: repeating-linear-gradient(
+        45deg,
+        #fd3018 0,
+        #fd3018 5px,
+        #ffa89e 5px,
+        #ffa89e 10px
+      );
+      height: 45px;
+      width: 15px;
+      position: absolute;
+      margin: auto;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      animation: rise-3 1s 4s forwards;
+    }
+    @keyframes rise-3 {
+      100% {
+        bottom: 202px;
+      }
+    }
+    .candle:after {
+      content: "";
+      position: absolute;
+      height: 16px;
+      width: 16px;
+      background-color: #ffee54;
+      border-radius: 0 50% 50% 50%;
+      transform: scale(0) rotate(45deg);
+      bottom: 50px;
+      left: -0.5px;
+      animation: flame 1.5s 5s forwards;
+    }
+    @keyframes flame {
+      100% {
+        transform: scale(1) rotate(45deg);
+      }
+    }
+
+    /* Birthday text */
+    .birthday-text {
+      font-size: 24px;
+      color: #e38a47;
+      opacity: 0;
+      margin-top: 20px;
+      animation: text-appear 1s 5.5s forwards;
+    }
+    @keyframes text-appear {
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Next button */
+    .next-button {
+      opacity: 0;
+      padding: 10px 20px;
+      font-size: 18px;
+      color: #ffffff;
+      background-color: #e38a47;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      animation: button-appear 1s 5.5s forwards;
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .next-button a {
+      color: #ffffff; /* White text */
+      text-decoration: none; /* No underline */
+    }
+    .next-button:hover {
+      background-color: #d47233;
+      transform: translateY(-5px) translateX(-50%);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+    @keyframes button-appear {
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Confetti container */
+    .confetti-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      top: 0;
+      pointer-events: none;
+      opacity: 0;
+      animation: fadeInConfetti 0.5s forwards 6s;
+    }
+
+    /* Fade-in effect for confetti container */
+    @keyframes fadeInConfetti {
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Confetti styling */
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: #f5427b;
+      opacity: 0.8;
+      animation: fall linear infinite;
+    }
+
+    /* Different colors and positions for confetti pieces */
+    .confetti:nth-child(1) { background-color: #f5427b; animation-duration: 2s; left: 20%; }
+    .confetti:nth-child(2) { background-color: #f5d142; animation-duration: 2.5s; left: 40%; }
+    .confetti:nth-child(3) { background-color: #42f5e6; animation-duration: 3s; left: 60%; }
+    .confetti:nth-child(4) { background-color: #42a4f5; animation-duration: 3.5s; left: 80%; }
+    .confetti:nth-child(5) { background-color: #f54242; animation-duration: 4s; left: 50%; }
+
+    /* Falling confetti animation */
+    @keyframes fall {
+      0% {
+        transform: translateY(-100%) rotate(0deg);
+      }
+      100% {
+        transform: translateY(400px) rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="container">
+    <div class="cake">
+      <div class="candle"></div>
+      <div class="top-layer"></div>
+      <div class="middle-layer"></div>
+      <div class="bottom-layer"></div>
+    </div>
+    <p class="birthday-text">Happy Birthday, Kia!</p>
+    <button class="next-button" id="nextButton"><a href="buku.html">Next</a></button>
+    <div class="confetti-container">
+      <div class="confetti"></div>
+      <div class="confetti"></div>
+      <div class="confetti"></div>
+      <div class="confetti"></div>
+      <div class="confetti"></div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("nextButton").addEventListener("click", function () {
+      const container = document.getElementById("container");
+      container.classList.add("fade-out"); // Tambahkan kelas fade-out
+      setTimeout(function () {
+        window.location.href = "buku.html"; // Ganti halaman setelah animasi
+      }, 1000); // Sesuaikan durasi sesuai waktu animasi
+    });
+  </script>
+</body>
+</html>

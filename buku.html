@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Birthday Card</title>
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Stylesheet -->
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background-color: #eac285;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        flex-direction: column;
+      }
+      .card {
+        width: 90vw;
+        max-width: 1400px;
+        height: auto;
+        aspect-ratio: 14 / 6.5;
+        position: relative;
+        -webkit-perspective: 1200px;
+        perspective: 1200px;
+        transition: transform 1s;
+      }
+      .card:hover {
+        transform: rotate(-5deg);
+      }
+      .card:hover .outside {
+        transform: rotateY(-130deg);
+      }
+      .outside,
+      .inside {
+        height: 100%;
+        width: 50%;
+        position: absolute;
+        left: 50.1%;
+      }
+      .inside {
+        background: linear-gradient(to right, #e7e7e7, #ffffff 30%);
+        line-height: 1.5;
+        padding: 10px 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow-y: auto;
+      }
+      .outside {
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        z-index: 1;
+        transform-origin: left;
+        transition: 2s;
+        cursor: pointer;
+      }
+      .front,
+      .back {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        transform: rotateX(0deg);
+      }
+      .front {
+        background-color: #ffffff;
+      }
+      .back {
+        transform: rotateY(180deg);
+        background: linear-gradient(to left, #e7e7e7, #ffffff 30%);
+      }
+      .cake {
+        width: 100%;
+        position: absolute;
+        bottom: 30px;
+      }
+      .top-layer,
+      .middle-layer,
+      .bottom-layer {
+        height: 8%;
+        width: 24%;
+        background-repeat: repeat;
+        background-size: 60px 100px;
+        background-position: 28px 0;
+        background-image: linear-gradient(
+            transparent 50px,
+            #fedbab 50px,
+            #fedbab 60px,
+            transparent 60px
+          ),
+          radial-gradient(circle at 30px 5px, #994c10 30px, #fcbf29 31px);
+        border-radius: 10px 10px 0 0;
+        position: relative;
+        margin: auto;
+      }
+      .middle-layer {
+        transform: scale(0.85);
+        top: 6px;
+      }
+      .top-layer {
+        transform: scale(0.7);
+        top: 26px;
+      }
+      .candle {
+        height: 6%;
+        width: 2%;
+        background: repeating-linear-gradient(
+          45deg,
+          #fd3018 0,
+          #fd3018 5px,
+          #ffa89e 5px,
+          #ffa89e 10px
+        );
+        position: absolute;
+        margin: auto;
+        left: 0;
+        right: 0;
+        bottom: 16%;
+      }
+      .candle:before {
+        content: "";
+        position: absolute;
+        height: 16%;
+        width: 16%;
+        background-color: #ffa500;
+        border-radius: 0 50% 50% 50%;
+        bottom: 3.8vh;
+        transform: rotate(45deg);
+        left: -1px;
+      }
+      .outside p {
+        font-size: 2vw;
+        text-transform: uppercase;
+        margin-top: 2vh;
+        text-align: center;
+        letter-spacing: 0.2vw;
+        color: #000046;
+      }
+      .inside p {
+        font-size: 1.5vw;
+        line-height: 1.5;
+        max-width: 90%;
+        margin-bottom: 2vh;
+      }
+      .inside h1 {
+        font-size: 4vw;
+        line-height: 1.1em;
+      }
+      img {
+        border-radius: 50%;
+        width: 10%;
+        height: auto;
+        object-fit: cover;
+        margin-top: 1.5vh;
+      }
+      .biodata {
+        margin-top: 1vh;
+        font-size: 1.2vw;
+        color: #000046;
+        text-align: center;
+      }
+      .biodata p {
+        margin: 0.5vh 0;
+      }
+      #nextBtn {
+        display: none;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        padding: 10px 20px;
+        font-size: 1.5vw;
+        background-color: #e38a47;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+      #nextBtn:hover {
+        background-color: #d47233;
+        transform: translateY(-3px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="outside">
+        <div class="front">
+          <p>Happy Birthday</p>
+          <div class="cake">
+            <div class="top-layer"></div>
+            <div class="middle-layer"></div>
+            <div class="bottom-layer"></div>
+            <div class="candle"></div>
+          </div>
+        </div>
+        <div class="back"></div>
+      </div>
+      <div class="inside">
+        <p>
+          Happy 17th birthday! 🎉 May all your dreams come true this new year.
+          Be amazed to see yourself grow tremendously and jangan takut tumbuh
+          dewasa yaa.
+        </p>
+        <img src="image/cnth.jpg" alt="Birthday Photo" />
+        <div class="biodata">
+          <p>Name: Kia</p>
+          <p>Age: 17</p>
+        </div>
+      </div>
+    </div>
+    <a href="buku.html" id="nextBtn">Next</a>
+    <script>
+      window.onload = function () {
+        setTimeout(function () {
+          document.getElementById("nextBtn").style.display = "block";
+        }, 3000);
+      };
+    </script>
+  </body>
+</html>
