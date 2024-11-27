@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Greeting Card</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url("image/Kartu\ Ucapan\ Selamat\ Ulang\ Tahun.png");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        background-attachment: fixed;
+        overflow: hidden;
+      }
+
+      .container {
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+        padding-top: 50px;
+        position: relative;
+        z-index: 2;
+      }
+
+      header h1 {
+        font-size: 2.5em;
+        font-weight: bold;
+        margin-bottom: 50px;
+      }
+
+      section {
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        font-size: large;
+        font-weight: bold;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.5);
+      }
+
+      .next-button {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: medium;
+        font-weight: bold;
+        color: white;
+        background-color: rgba(255, 0, 0, 0.8);
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        text-decoration: none;
+        opacity: 0; /* Awal transparan */
+        transition: opacity 2s ease, transform 0.3s ease;
+      }
+
+      .next-button:hover {
+        background-color: rgba(255, 0, 0, 1);
+        transform: scale(1.05);
+        transition: all 0.3s ease;
+      }
+
+      .next-button.show {
+        opacity: 1; /* Tampilkan tombol */
+      }
+
+      .next-button.animate {
+        animation: buttonFadeOut 1s ease forwards; /* Efek fade-out */
+      }
+
+      @keyframes buttonFadeOut {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+      }
+
+      .next-button a {
+        text-decoration: none; /* Hilangkan garis bawah */
+        color: inherit; /* Warna teks mengikuti tombol */
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+      }
+
+      .paper {
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        top: -20px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 2px;
+        animation: fall linear;
+        opacity: 0.9;
+      }
+
+      @keyframes fall {
+        0% {
+          transform: translateY(-100vh) rotate(0deg);
+        }
+        100% {
+          transform: translateY(100vh) rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <h1 id="headerText"></h1>
+      </header>
+      <section id="aboutMe">
+        <p id="aboutMeText"></p>
+        <button class="next-button" id="nextButton">
+          <a href="buku.html">Next</a>
+        </button>
+      </section>
+    </div>
+
+    <script>
+      // Efek mengetik untuk header
+      var headerTextElement = document.getElementById("headerText");
+      var headerText = "Happy Birthday Yaa 🎉";
+      var headerIndex = 0;
+
+      function typeEffectHeader() {
+        headerTextElement.textContent += headerText[headerIndex];
+        headerIndex++;
+        if (headerIndex >= headerText.length) {
+          setTimeout(() => {
+            headerTextElement.textContent = "";
+            headerIndex = 0;
+            typeEffectHeader();
+          }, 2000);
+        } else {
+          setTimeout(typeEffectHeader, 100);
+        }
+      }
+
+      typeEffectHeader();
+
+      // Efek mengetik untuk teks bawah
+      var aboutMeTextElement = document.getElementById("aboutMeText");
+      var aboutMeText = `
+Selamat ulang tahun, Saskia Aulia Slebew! 🎉✨
+Hari ini, dunia kayaknya lebih cerah gara-gara lo nambah umur (dan makin keren, pastinya!). Semoga hari ini penuh vibes positif, kejutan-kejutan seru, dan tawa ngakak bareng orang-orang tersayang. Jangan lupa traktir yaa, soalnya ulang tahun cuma sekali setahun—wajib spesial! 🤭
+Semoga semua impian lo yang gila-gila tapi doable itu tercapai satu per satu. Lo tuh salah satu orang yang bikin hidup ini lebih berwarna, dan gue bangga banget bisa kenal lo. Jadi, tetep jadi Saskia yang asik, keren, dan selalu bikin orang di sekitar lo senyum. 🎂🔥
+Enjoy your day to the fullest, queen! 👑`;
+      var aboutMeIndex = 0;
+
+      function typeEffectAboutMe() {
+        // Tambahkan satu karakter ke teks
+        aboutMeTextElement.textContent += aboutMeText[aboutMeIndex];
+        aboutMeIndex++;
+
+        // Cek apakah teks sudah selesai
+        if (aboutMeIndex >= aboutMeText.length) {
+          clearInterval(aboutMeTypingInterval); // Hentikan interval jika selesai
+          document.getElementById("nextButton").classList.add("show"); // Tampilkan tombol
+        }
+      }
+
+      // Interval untuk mengetik teks bawah
+      var aboutMeTypingInterval = setInterval(typeEffectAboutMe, 50);
+
+      // Efek kertas jatuh
+      function createPaper() {
+        var paper = document.createElement("div");
+        paper.classList.add("paper");
+        paper.style.left = Math.random() * window.innerWidth + "px";
+        paper.style.animationDuration = Math.random() * 3 + 2 + "s";
+        paper.style.backgroundColor =
+          "hsl(" + Math.random() * 360 + ", 100%, 70%)";
+        paper.style.width = paper.style.height =
+          Math.random() * 15 + 5 + "px";
+
+        document.body.appendChild(paper);
+
+        setTimeout(() => {
+          paper.remove();
+        }, 5000);
+      }
+
+      // Interval untuk menciptakan efek kertas jatuh
+      setInterval(createPaper, 200);
+    </script>
+  </body>
+</html>
