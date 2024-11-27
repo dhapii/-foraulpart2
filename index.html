@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cake Animation</title>
+  <title>hihhihi</title>
   <style>
     /* Reset */
     *,
@@ -211,6 +211,58 @@
         transform: translateY(400px) rotate(360deg);
       }
     }
+
+    /* Responsiveness for small devices */
+    @media screen and (max-width: 600px) {
+      .container {
+        width: 90%; /* Reduce container width */
+        height: auto; /* Adjust height automatically */
+        padding: 20px;
+      }
+
+      .cake {
+        bottom: 50px; /* Adjust cake positioning */
+      }
+
+      .bottom-layer,
+      .middle-layer,
+      .top-layer {
+        width: 80%; /* Adjust layer width */
+        height: 60px; /* Reduce layer height */
+      }
+
+      .middle-layer {
+        top: 60px;
+      }
+
+      .top-layer {
+        top: 120px;
+      }
+
+      .candle {
+        height: 35px; /* Shrink candle */
+        width: 12px; /* Shrink candle width */
+      }
+
+      .candle:after {
+        height: 12px; /* Adjust flame size */
+        width: 12px;
+      }
+
+      .birthday-text {
+        font-size: 18px; /* Reduce text size */
+      }
+
+      .next-button {
+        font-size: 16px; /* Reduce button size */
+        padding: 8px 15px;
+      }
+
+      .confetti {
+        width: 6px; /* Shrink confetti size */
+        height: 6px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -222,7 +274,7 @@
       <div class="bottom-layer"></div>
     </div>
     <p class="birthday-text">Happy Birthday, Kia!</p>
-    <button class="next-button" id="nextButton"><a href="buku.html">Next</a></button>
+    <button class="next-button" id="nextButton"><a href="tengah.html">Next</a></button>
     <div class="confetti-container">
       <div class="confetti"></div>
       <div class="confetti"></div>
@@ -235,10 +287,10 @@
   <script>
     document.getElementById("nextButton").addEventListener("click", function () {
       const container = document.getElementById("container");
-      container.classList.add("fade-out"); // Tambahkan kelas fade-out
+      container.classList.add("fade-out"); // Add fade-out class
       setTimeout(function () {
-        window.location.href = "buku.html"; // Ganti halaman setelah animasi
-      }, 1000); // Sesuaikan durasi sesuai waktu animasi
+        window.location.href = "buku.html"; // Change page after animation
+      }, 1000); // Match the animation duration
     });
   </script>
 </body>
