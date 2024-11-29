@@ -2,12 +2,10 @@
 <html lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>hihhihi</title>
+  <title>Happy Birthday</title>
   <style>
     /* Reset */
-    *,
-    *::before,
-    *::after {
+    * {
       padding: 0;
       margin: 0;
       box-sizing: border-box;
@@ -15,6 +13,19 @@
 
     body {
       background-color: #eac285;
+      overflow: hidden; /* Prevent scroll during animations */
+    }
+
+    /* Initial fade-in effect */
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 1.5s ease-in forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
     }
 
     .container {
@@ -29,14 +40,22 @@
       box-shadow: 0 20px 45px rgba(120, 76, 10, 0.25);
       text-align: center;
       overflow: hidden;
-      transition: opacity 1s ease; /* Fade-out transition */
+      opacity: 0; /* Hidden at start */
+      animation: loadEffect 2s forwards ease-in-out;
     }
 
-    .fade-out {
-      opacity: 0; /* Hides container */
+    @keyframes loadEffect {
+      0% {
+        transform: translate(-50%, -60%) scale(0.9);
+        opacity: 0;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
     }
 
-    /* Cake styling */
+    /* Cake and other elements styling remains the same */
     .cake {
       width: 100%;
       position: absolute;
@@ -120,7 +139,6 @@
       }
     }
 
-    /* Birthday text */
     .birthday-text {
       font-size: 24px;
       color: #e38a47;
@@ -134,7 +152,6 @@
       }
     }
 
-    /* Next button */
     .next-button {
       opacity: 0;
       padding: 10px 20px;
@@ -152,8 +169,8 @@
       transform: translateX(-50%);
     }
     .next-button a {
-      color: #ffffff; /* White text */
-      text-decoration: none; /* No underline */
+      color: #ffffff;
+      text-decoration: none;
     }
     .next-button:hover {
       background-color: #d47233;
@@ -166,7 +183,6 @@
       }
     }
 
-    /* Confetti container */
     .confetti-container {
       position: absolute;
       width: 100%;
@@ -177,15 +193,12 @@
       opacity: 0;
       animation: fadeInConfetti 0.5s forwards 6s;
     }
-
-    /* Fade-in effect for confetti container */
     @keyframes fadeInConfetti {
       100% {
         opacity: 1;
       }
     }
 
-    /* Confetti styling */
     .confetti {
       position: absolute;
       width: 8px;
@@ -194,78 +207,18 @@
       opacity: 0.8;
       animation: fall linear infinite;
     }
-
-    /* Different colors and positions for confetti pieces */
     .confetti:nth-child(1) { background-color: #f5427b; animation-duration: 2s; left: 20%; }
     .confetti:nth-child(2) { background-color: #f5d142; animation-duration: 2.5s; left: 40%; }
     .confetti:nth-child(3) { background-color: #42f5e6; animation-duration: 3s; left: 60%; }
     .confetti:nth-child(4) { background-color: #42a4f5; animation-duration: 3.5s; left: 80%; }
     .confetti:nth-child(5) { background-color: #f54242; animation-duration: 4s; left: 50%; }
-
-    /* Falling confetti animation */
     @keyframes fall {
-      0% {
-        transform: translateY(-100%) rotate(0deg);
-      }
-      100% {
-        transform: translateY(400px) rotate(360deg);
-      }
-    }
-
-    /* Responsiveness for small devices */
-    @media screen and (max-width: 600px) {
-      .container {
-        width: 90%; /* Reduce container width */
-        height: auto; /* Adjust height automatically */
-        padding: 20px;
-      }
-
-      .cake {
-        bottom: 50px; /* Adjust cake positioning */
-      }
-
-      .bottom-layer,
-      .middle-layer,
-      .top-layer {
-        width: 80%; /* Adjust layer width */
-        height: 60px; /* Reduce layer height */
-      }
-
-      .middle-layer {
-        top: 60px;
-      }
-
-      .top-layer {
-        top: 120px;
-      }
-
-      .candle {
-        height: 35px; /* Shrink candle */
-        width: 12px; /* Shrink candle width */
-      }
-
-      .candle:after {
-        height: 12px; /* Adjust flame size */
-        width: 12px;
-      }
-
-      .birthday-text {
-        font-size: 18px; /* Reduce text size */
-      }
-
-      .next-button {
-        font-size: 16px; /* Reduce button size */
-        padding: 8px 15px;
-      }
-
-      .confetti {
-        width: 6px; /* Shrink confetti size */
-        height: 6px;
-      }
+      0% { transform: translateY(-100%) rotate(0deg); }
+      100% { transform: translateY(400px) rotate(360deg); }
     }
   </style>
 </head>
-<body>
+<body class="fade-in">
   <div class="container" id="container">
     <div class="cake">
       <div class="candle"></div>
@@ -287,10 +240,10 @@
   <script>
     document.getElementById("nextButton").addEventListener("click", function () {
       const container = document.getElementById("container");
-      container.classList.add("fade-out"); // Add fade-out class
+      container.classList.add("fade-out");
       setTimeout(function () {
-        window.location.href = "buku.html"; // Change page after animation
-      }, 1000); // Match the animation duration
+        window.location.href = "buku.html";
+      }, 1000);
     });
   </script>
 </body>
