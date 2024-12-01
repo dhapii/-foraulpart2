@@ -17,7 +17,8 @@
         font-family: "Poppins", sans-serif;
       }
       body {
-        background-color: #eac285;
+        background: linear-gradient(120deg, #FFB3B3, #A8E0E9, #FFF6A0, #D0B1FF); /* Gradasi cerah dengan pink, ungu, dan peach */
+        overflow: hidden; /* Prevent scroll during animations */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -33,6 +34,19 @@
         -webkit-perspective: 1200px;
         perspective: 1200px;
         transition: transform 1s;
+        opacity: 0;
+        transform: scale(0.8);
+        animation: fadeInScale 1s ease forwards;
+      }
+      @keyframes fadeInScale {
+        0% {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
       }
       .card:hover {
         transform: rotate(-5deg);
@@ -153,28 +167,16 @@
         font-size: 1.5vw;
         line-height: 1.5;
         max-width: 90%;
-        margin-bottom: 2vh;
-      }
-      .inside h1 {
-        font-size: 4vw;
-        line-height: 1.1em;
+        margin-top: 2vh;
       }
       img {
-        border-radius: 50%;
-        width: 10%;
-        height: auto;
-        object-fit: cover;
-        margin-top: 1.5vh;
-      }
-      .biodata {
-        margin-top: 1vh;
-        font-size: 1.2vw;
-        color: #000046;
-        text-align: center;
-      }
-      .biodata p {
-        margin: 0.5vh 0;
-      }
+    border-radius: 50%;
+    width: 20%; /* Perbesar ukuran gambar */
+    max-width: 150px; /* Batas maksimum agar tetap responsif */
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 1.5vh;
+  }
     </style>
   </head>
   <body>
@@ -192,14 +194,10 @@
         <div class="back"></div>
       </div>
       <div class="inside">
-        <p>
-          Happy 17th Birthday! 🎉 Wishing you a year full of new adventures, growth, and endless joy. Jangan takut tumbuh dewasa, just enjoy the ride—karena lo akan makin keren seiring berjalannya waktu! Semoga segala impian lo tercapai, dan setiap langkah lo selalu dikelilingi kebahagiaan. Keep shining, and I can’t wait to see all the amazing things you’ll do in the future! ✨🎂
-        </p>
         <img src="image/cnth.jpg" alt="Birthday Photo" />
-        <div class="biodata">
-          <p>Name: Kia</p>
-          <p>Age: 17</p>
-        </div>
+        <p>
+          Happy sweet 17, Kia! 🌟 Semoga semua dreams lo satu per satu tercapai dan setiap langkah lo penuh makna. Jangan lupa, hidup bukan cuma soal destination, tapi juga enjoy every moment-nya. Selalu jadi versi terbaik diri lo ya, karena dunia ini needs more people like you! Stay happy, blessed, and penuh cinta! 💕✨
+        </p>
       </div>
     </div>
   </body>
