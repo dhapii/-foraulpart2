@@ -9,12 +9,28 @@
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         margin: 0;
         padding: 0;
-        background-image: url("image/Kartu\ Ucapan\ Selamat\ Ulang\ Tahun.png");
+        background: linear-gradient(120deg, #FFB3B3, #A8E0E9, #FFF6A0, #D0B1FF); /* Gradasi cerah */
         background-size: cover;
         background-position: center;
-        color: white;
         background-attachment: fixed;
-        overflow: hidden;
+        overflow: hidden; /* Prevent scroll during animations */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        flex-direction: column;
+        color: #ffff;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+        animation: fadeInBody 2s ease-in-out forwards; /* Efek fade-in untuk body */
+      }
+
+      @keyframes fadeInBody {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
       }
 
       .container {
@@ -24,23 +40,65 @@
         padding-top: 50px;
         position: relative;
         z-index: 2;
+        opacity: 0;
+        animation: fadeInContainer 2s 1s ease-in-out forwards; /* Fade-in container */
+      }
+
+      @keyframes fadeInContainer {
+        0% {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       header h1 {
         font-size: 2.5em;
         font-weight: bold;
         margin-bottom: 50px;
+        opacity: 0;
+        animation: fadeInHeader 2s 1.5s ease-in-out forwards; /* Fade-in header */
+      }
+
+      @keyframes fadeInHeader {
+        0% {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       section {
         margin-top: 20px;
         padding: 20px;
-        border: 1px solid #ccc;
+        border: 1px solid rgba(255, 255, 255, 0.3); /* Transparan untuk border */
         border-radius: 10px;
         font-size: large;
         font-weight: bold;
-        color: #fff;
-        background: rgba(0, 0, 0, 0.5);
+        color: #e38a47;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+        background: rgba(255, 255, 255, 0.2); /* Transparansi untuk elemen */
+        backdrop-filter: blur(10px); /* Efek blur */
+        -webkit-backdrop-filter: blur(10px); /* Dukungan untuk Safari */
+        opacity: 0;
+        animation: fadeInSection 2s 2s ease-in-out forwards; /* Fade-in section */
+      }
+
+      @keyframes fadeInSection {
+        0% {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .next-button {
@@ -57,6 +115,18 @@
         text-decoration: none;
         opacity: 0; /* Awal transparan */
         transition: opacity 2s ease, transform 0.3s ease;
+        animation: fadeInButton 2s 3s ease-in-out forwards; /* Fade-in button */
+      }
+
+      @keyframes fadeInButton {
+        0% {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .next-button:hover {
@@ -166,7 +236,7 @@ Enjoy your day to the fullest, queen! 👑`;
         // Cek apakah teks sudah selesai
         if (aboutMeIndex >= aboutMeText.length) {
           clearInterval(aboutMeTypingInterval); // Hentikan interval jika selesai
-          document.getElementById("nextButton").classList.add("show"); // Tampilkan tombol
+          document.getElementById("nextButton").classList.add("show"); // Tampilkan tombol setelah teks selesai mengetik
         }
       }
 
